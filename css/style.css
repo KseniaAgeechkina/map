@@ -1,0 +1,442 @@
+/* 01. Бумага, краска и типографика винтажного атласа */
+:root {
+  color-scheme: dark;
+  --paper: #121820;
+  --paper-light: #1c242d;
+  --ink: #d4dce0;
+  --rust: #b5a283;
+  --muted: #9aa6ae;
+  --line: #c8d7e32b;
+  --snow: #c7d7de;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  padding: 0;
+  background: #090d12;
+  color: var(--ink);
+  font: 14px/1.6 Arial, Helvetica, sans-serif;
+}
+body:has(dialog[open]) { overflow: hidden; }
+.page-shell {
+  overflow: clip;
+  background: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23847855' opacity='.07' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+}
+button, input, select { font: inherit; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+button { cursor: pointer; color: inherit; }
+button:disabled { cursor: not-allowed; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 5px;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3, p { margin-top: 0; }
+.wrap { width: min(1392px, 91%); margin-inline: auto; }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.7px; color: var(--rust); margin: 0 0 9px; }
+h2 { font: 500 34px/1.15 Georgia, 'Times New Roman', serif; letter-spacing: -.6px; margin: 0; }
+.text-button { background: transparent; border: 0; border-bottom: 1px solid transparent; padding: 9px 0; font-size: 12px; min-height: 44px; }
+.text-button:hover { color: var(--rust); border-bottom-color: currentColor; }
+.primary, .secondary {
+  border: 1px solid var(--ink);
+  padding: 15px 24px;
+  min-height: 52px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .2px;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.primary { background: var(--rust); border-color: var(--rust); color: var(--paper-light); }
+.primary:hover { background: #c6b698; transform: translateY(-2px); box-shadow: 0 5px 18px #0003; }
+.secondary { background: transparent; color: var(--ink); }
+.secondary:hover { background: #223b500b; }
+[hidden] { display: none !important; }
+
+/* 02. Шапка и крупный плакатный заголовок */
+.header { display: flex; align-items: center; gap: 35px; padding: 22px 0; border-bottom: 1px solid var(--ink); }
+.brand { display: flex; align-items: center; gap: 11px; font-size: 14px; font-weight: 900; letter-spacing: 1px; line-height: 1.2; }
+.brand img { width: 42px; height: 48px; }
+nav { display: flex; gap: 32px; margin-left: auto; }
+.nav-link { position: relative; padding: 12px 0; font-size: 12px; }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: 5px; width: 100%; height: 2px; background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+#booking-count { background: var(--ink); color: var(--paper); border-radius: 50%; display: inline-grid; place-items: center; min-width: 21px; height: 21px; font-size: 10px; margin-left: 5px; }
+.header-note { text-align: right; font-size: 8px; letter-spacing: 1px; line-height: 1.7; border-left: 1px solid var(--line); padding-left: 35px; }
+.header-note span { display: block; color: var(--muted); font-size: 7px; }
+.intro { padding-top: 22px; }
+.edition { display: flex; justify-content: space-between; gap: 20px; font-size: 8px; letter-spacing: 1.8px; }
+.edition span:nth-child(2) { color: var(--rust); }
+.masthead { display: flex; justify-content: space-between; align-items: center; gap: 35px; padding: 25px 0 34px; }
+h1 { font-family: Impact, 'Arial Narrow', 'DejaVu Sans', sans-serif; font-size: clamp(60px, 7.2vw, 110px); font-weight: 900; letter-spacing: -4.5px; line-height: .94; margin: 0; }
+h1 em { font-style: normal; color: var(--rust); }
+.intro-aside { display: grid; grid-template-columns: 130px auto; gap: 12px 25px; align-items: center; max-width: 340px; }
+.wolf-seal { grid-row: span 2; width: 130px; height: 147px; border: 1px solid var(--ink); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotate(-10deg); position: relative; }
+.wolf-seal::before { content: ''; position: absolute; inset: 6px; border: 1px dashed var(--line); border-radius: 50%; }
+.wolf-seal img { width: 105px; height: 105px; animation: wolf-breathe 5s ease-in-out infinite; }
+.wolf-seal span { font-size: 7px; letter-spacing: 1.3px; margin-top: -9px; }
+.intro-aside p { margin: 0; font: 17px/1.5 Georgia, serif; }
+.journey-link { font-size: 11px; border-bottom: 1px solid var(--rust); justify-self: start; padding-bottom: 8px; color: var(--rust); }
+.journey-link span { margin-left: 35px; font-size: 23px; display: inline-block; transition: transform .25s; }
+.journey-link:hover span { transform: translate(4px, 4px); }
+
+/* 03. Фильтры и иллюстрированная интерактивная карта */
+.atlas-toolbar { border-top: 3px solid var(--ink); padding: 24px 0 21px; display: flex; justify-content: space-between; gap: 25px; align-items: center; }
+.atlas-title { display: flex; align-items: center; gap: 24px; }
+.chapter-index { font: italic 47px/1 Georgia, serif; color: var(--rust); padding-right: 24px; border-right: 1px solid var(--line); }
+.atlas-title .eyebrow { font-size: 8px; margin-bottom: 6px; }
+.map-instruction { font-size: 11px; line-height: 1.6; color: var(--muted); text-align: right; }
+.filters { display: flex; align-items: center; margin-bottom: 0; border: 1px solid var(--ink); border-bottom: none; background: var(--paper-light); }
+.filters label { display: grid; gap: 3px; padding: 13px 23px; border-right: 1px solid var(--line); min-width: 225px; }
+.filters label > span { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--rust); }
+select { background: transparent; color: var(--ink); border: none; padding: 0 22px 0 0; width: 100%; min-height: 28px; font-size: 13px; cursor: pointer; }
+.filters .text-button { margin-left: 25px; }
+#result-count { margin-left: auto; margin-right: 22px; font-size: 10px; color: var(--muted); }
+.map-frame { border: 1px solid var(--ink); }
+.map { position: relative; aspect-ratio: 1536 / 1024; isolation: isolate; overflow: hidden; background: #b1c3c8; }
+.map-art { width: 100%; height: 100%; object-fit: cover; }
+.map::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background-image: radial-gradient(circle, #fff9 1px, transparent 2px), radial-gradient(circle, #fff8 1px, transparent 2px); background-size: 150px 180px, 241px 213px; animation: snow 24s linear infinite; }
+.map-caption { position: absolute; top: 5%; left: 4%; transform: rotate(-7deg); pointer-events: none; color: var(--rust); text-shadow: 0 1px #f5ecd944; }
+.map-caption > span { display: block; font-size: 9px; font-weight: 700; letter-spacing: 3px; margin-bottom: 4px; }
+.map-caption strong { font: 900 clamp(22px, 3.5vw, 50px)/.98 Impact, 'Arial Narrow', sans-serif; letter-spacing: -1px; }
+.marker { position: absolute; z-index: 3; display: grid; justify-items: center; gap: 0; transform: translate(-50%, -40%); border: none; background: transparent; padding: 8px; min-width: 44px; max-width: 190px; min-height: 44px; transition: filter .2s; }
+.marker .pin { width: 37px; height: 37px; display: grid; place-items: center; font-size: 16px; font-weight: 700; background: var(--paper-light); border: 2px solid var(--ink); border-radius: 50%; color: var(--ink); box-shadow: 0 4px 0 #223b5026; position: relative; transition: transform .2s, background .2s; }
+.marker .pin::after { content: ''; width: 7px; height: 7px; background: inherit; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; position: absolute; bottom: -6px; transform: rotate(45deg); }
+.marker .label { margin-top: 11px; background: var(--paper-light); color: var(--ink); font-size: 10px; font-weight: 700; line-height: 1.4; padding: 5px 9px; box-shadow: 0 2px 8px #223b5022; text-align: center; }
+.marker:hover:not(:disabled) .pin, .marker.selected .pin { background: var(--rust); color: var(--paper-light); border-color: var(--rust); transform: translateY(-4px); }
+.marker.selected .label { background: var(--rust); color: var(--paper-light); }
+.marker:disabled .pin { background: #677785; color: #f2e8d1; border-color: #677785; }
+.marker:disabled .label { background: #e9dfcc; color: #6a737b; }
+.marker .label small { display: block; font-size: 7px; letter-spacing: 1px; text-transform: uppercase; font-weight: 400; }
+.map-compass { position: absolute; left: 3%; bottom: 4%; color: var(--ink); display: grid; justify-items: center; line-height: 1; font-size: 9px; pointer-events: none; }
+.map-compass b { font-size: 60px; font-weight: 400; margin: 4px 0; }
+.map-coordinates { position: absolute; bottom: 3%; right: 3%; font-size: 8px; letter-spacing: 1.8px; padding: 4px 7px; background: #eee5d1a8; }
+.legend { display: flex; align-items: center; gap: 28px; padding: 15px 22px; border-top: 1px solid var(--ink); background: var(--paper-light); }
+.legend > span { display: flex; align-items: center; gap: 8px; font-size: 10px; }
+.legend i { display: grid; place-items: center; font-size: 11px; font-style: normal; border: 1px solid var(--ink); border-radius: 50%; width: 19px; height: 19px; }
+.legend .selected { background: var(--rust); color: var(--paper); border-color: var(--rust); }
+.legend .busy { background: #677785; color: var(--paper); border-color: #677785; }
+.legend small { margin-left: auto; font-size: 9px; color: var(--muted); }
+.empty-result { padding: 25px; text-align: center; border: 1px dashed var(--rust); color: var(--rust); margin-top: 20px; }
+/* Драконы летят над пейзажем; крылья движутся отдельно от траектории. */
+.dragon { position: absolute; z-index: 2; pointer-events: none; width: 100px; filter: drop-shadow(22px 38px 3px #1c354033); }
+.dragon svg { display: block; width: 100%; height: auto; overflow: visible; }
+.dragon-one { left: -20%; top: 15%; animation: dragon-flight 35s linear infinite; }
+.dragon-two { left: -20%; top: 24%; width: 62px; animation: dragon-flight 46s 9s linear infinite; }
+.wing { transform-origin: 95px 55px; animation: wing-beat 2.4s ease-in-out infinite; }
+.wing-right { animation-delay: -.12s; }
+
+/* 04. Приюты как страницы путевого альбома */
+.list-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin: 53px 0 25px; }
+.list-heading > p { color: var(--muted); font-size: 11px; margin-bottom: 2px; }
+.list-heading .eyebrow { font-size: 8px; }
+.shelter-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 20px; }
+.shelter-card { padding: 0; background: transparent; border: none; text-align: left; width: 100%; display: flex; flex-direction: column; position: relative; }
+.card-image { position: relative; width: 100%; aspect-ratio: 1.32; overflow: hidden; background: #b8c8ce; border: 1px solid var(--line); }
+.card-image .scene-crop { position: absolute; inset: 0; background-image: url('../images/north-atlas.webp'); background-repeat: no-repeat; background-size: 350%; transition: transform .6s; }
+.shelter-card:hover:not(:disabled) .scene-crop { transform: scale(1.09); }
+.card-number { position: absolute; left: 12px; top: 11px; background: var(--paper); font-size: 11px; padding: 2px 8px; font-weight: 700; }
+.availability { position: absolute; right: 10px; bottom: 10px; background: var(--paper-light); padding: 5px 8px; font-size: 8px; text-transform: uppercase; letter-spacing: .7px; }
+.card-body { padding: 16px 0 12px; border-bottom: 1px solid var(--ink); width: 100%; flex: 1; display: flex; flex-direction: column; }
+.card-type { font-size: 7px; letter-spacing: 1.1px; color: var(--rust); margin-bottom: 5px; }
+.card-body strong { font: 22px/1.1 Georgia, serif; font-weight: 400; display: block; min-height: 49px; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 15px; font-size: 10px; }
+.card-bottom b { font-size: 16px; font-weight: 700; }
+.card-bottom small { font-size: 9px; font-weight: 400; }
+.card-bottom > span:last-child { font-size: 20px; color: var(--rust); }
+.shelter-card.selected .card-image { outline: 3px solid var(--rust); outline-offset: -3px; }
+.shelter-card.selected .availability { background: var(--rust); color: var(--paper); }
+.shelter-card:disabled .card-image { filter: saturate(.3); opacity: .75; }
+.shelter-card:disabled .availability { background: var(--ink); color: var(--paper); }
+.shelter-card:disabled .card-body { opacity: .65; }
+.field-note { margin-top: 65px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 35px 0; display: grid; grid-template-columns: 70px 1.15fr 1fr 130px; gap: 32px; align-items: center; }
+.note-number { font: italic 38px Georgia; color: var(--rust); align-self: start; }
+.field-note h2 { font-size: 31px; }
+.field-note > p { font-size: 12px; line-height: 1.8; margin: 0; color: var(--muted); }
+.note-wolf { width: 130px; transform: rotate(-6deg); animation: wolf-breathe 5s ease-in-out infinite; }
+
+/* 05. Мои брони и подвал */
+.bookings-section { padding: 55px 0 60px; outline: none; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-bottom: 25px; }
+.booking-empty { padding: 36px 24px; border: 1px dashed #223b5070; display: flex; align-items: center; justify-content: center; gap: 25px; }
+.booking-empty img { width: 70px; height: 70px; opacity: .6; }
+.booking-empty p { margin: 0; color: var(--muted); font-size: 12px; }
+.booking-empty strong { font: 23px Georgia; color: var(--ink); display: block; margin-bottom: 8px; }
+.booking-record { border: 1px solid var(--ink); display: grid; grid-template-columns: 80px 1fr auto auto; align-items: center; gap: 25px; padding: 22px; margin-bottom: 14px; background: var(--paper-light); position: relative; }
+.record-stamp { width: 70px; height: 70px; border: 1px solid var(--rust); border-radius: 50%; display: grid; place-items: center; transform: rotate(-12deg); }
+.record-stamp img { width: 42px; }
+.booking-record h3 { font: 24px Georgia; margin: 5px 0 7px; }
+.booking-record p { font-size: 11px; margin: 0; color: var(--muted); }
+.booking-record .eyebrow { font-size: 8px; }
+.booking-record .amount { font: 25px Georgia; color: var(--rust); white-space: nowrap; }
+.booking-record .amount small { display: block; text-align: right; font: 9px Arial; color: var(--muted); margin-top: 4px; }
+.booking-record .text-button { margin-left: 15px; }
+footer { border-top: 3px solid var(--ink); padding: 25px 0 30px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+.footer-brand { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+.footer-brand img { width: 35px; }
+.footer-brand small { display: block; font-size: 6px; font-weight: 400; letter-spacing: 1px; margin-top: 5px; }
+footer > p { font-size: 9px; margin: 0; color: var(--muted); }
+footer > small { font-size: 7px; letter-spacing: .6px; }
+.notice { position: fixed; bottom: 25px; left: 50%; transform: translate(-50%, 20px); max-width: min(90%, 600px); padding: 17px 24px; background: var(--ink); color: var(--paper); border-left: 5px solid var(--rust); opacity: 0; pointer-events: none; transition: .25s; z-index: 30; font-size: 12px; box-shadow: 0 8px 30px #152f4240; }
+.notice.visible { opacity: 1; transform: translate(-50%, 0); }
+
+/* 06. Большие диалоги: разворот атласа, грамота и волчья печать */
+dialog { color: var(--ink); background: var(--paper-light); padding: 0; border: 1px solid var(--ink); max-height: calc(100dvh - 48px); overscroll-behavior: contain; box-shadow: 0 30px 100px #0a1b3277; }
+dialog[open] { animation: open-letter .35s ease both; }
+dialog::backdrop { background: #132b40ba; backdrop-filter: blur(7px); }
+.modal-close { position: absolute; top: 13px; right: 14px; z-index: 3; width: 38px; height: 38px; display: grid; place-items: center; background: var(--paper-light); border: 1px solid var(--line); color: var(--ink); font-size: 25px; line-height: 1; transition: background .2s, transform .2s; }
+.modal-close:hover { background: var(--paper); transform: rotate(90deg); }
+.stay-dialog { width: min(1050px, calc(100% - 70px)); }
+.detail { display: grid; grid-template-columns: .95fr 1fr; min-height: 630px; }
+.detail-art { position: relative; overflow: hidden; background: #9bb5c1; min-height: 100%; }
+.detail-art .scene-crop { position: absolute; inset: 0; background-image: url('../images/north-atlas.webp'); background-size: 370%; background-repeat: no-repeat; }
+.detail-art::after { content: ''; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, #152e47bc); }
+.detail-art-caption { position: absolute; z-index: 1; left: 30px; right: 30px; bottom: 30px; color: var(--paper-light); }
+.detail-art-caption > span { font-size: 9px; letter-spacing: 2px; }
+.detail-art-caption strong { display: block; font: 900 49px/.98 Impact, 'Arial Narrow', sans-serif; margin: 12px 0 18px; }
+.detail-art-caption img { width: 46px; padding: 5px; background: var(--paper); border-radius: 50%; }
+.detail-body { padding: 43px 37px 30px; }
+.detail-body .eyebrow { font-size: 8px; letter-spacing: 1.2px; }
+.detail h3 { font: 38px/1.03 Georgia, serif; letter-spacing: -1px; margin: 14px 0 17px; }
+.description { color: var(--muted); font-size: 12px; line-height: 1.8; margin-bottom: 17px; }
+.perks { display: flex; flex-wrap: wrap; gap: 7px 14px; padding-bottom: 17px; border-bottom: 1px solid var(--line); font-size: 9px; color: var(--muted); }
+.perks span::before { content: '✦'; font-size: 8px; color: var(--rust); margin-right: 5px; }
+.price-row { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 17px 0; font-size: 11px; }
+.price-row strong { font: 29px Georgia; color: var(--rust); margin-right: 4px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.fields label { display: grid; font-size: 10px; gap: 6px; }
+.fields input { width: 100%; min-width: 0; padding: 11px 13px; min-height: 46px; border: 1px solid #223b5060; background: var(--paper); border-radius: 0; color: var(--ink); }
+.fields input[aria-invalid="true"] { border-color: var(--rust); }
+.error { color: #e9ad9b; font-size: 10px; line-height: 1.4; min-height: 14px; }
+.total { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 8px 0 18px; font-size: 12px; }
+.total strong { font: 27px Georgia; color: var(--rust); }
+.booking-form > .primary { width: 100%; }
+.fine { color: var(--muted); font-size: 8px; margin: 10px 0 0; text-align: center; }
+.letter-dialog { width: min(700px, calc(100% - 45px)); padding: 30px 65px 35px; text-align: center; border: 8px solid var(--paper); outline: 1px solid var(--ink); outline-offset: -16px; background-color: var(--paper-light); }
+.letter-topline { display: flex; justify-content: space-between; font-size: 7px; letter-spacing: 1.6px; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 20px; }
+.letter-emblem { width: 75px; height: 75px; margin: 0 auto 18px; display: grid; place-items: center; }
+.letter-emblem img { width: 58px; }
+.letter-dialog h2 { font: 48px/1.04 Georgia, serif; letter-spacing: -1.5px; margin: 13px auto 19px; max-width: 500px; }
+.letter-dialog #confirm-text { color: var(--muted); font: 15px/1.6 Georgia, serif; margin: 0 auto 22px; max-width: 420px; }
+.dialog-actions { display: flex; justify-content: center; gap: 12px; margin: 25px 0 24px; }
+.dialog-actions > button { flex: 1; }
+.letter-bottom { font-size: 7px; letter-spacing: 1.8px; display: block; color: var(--muted); margin-top: 23px; }
+.gramota-summary { margin: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0; }
+.gramota-house { font: 22px/1.2 Georgia, serif; display: block; margin-bottom: 14px; }
+.gramota-grid { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 10px; }
+.gramota-grid > div { border-right: 1px solid var(--line); }
+.gramota-grid > div:last-child { border: none; }
+.gramota-grid small { font-size: 8px; letter-spacing: .9px; text-transform: uppercase; display: block; margin-bottom: 4px; color: var(--muted); }
+.gramota-grid b { font: 25px Georgia; }
+.gramota-grid b em { font: normal 11px Arial; }
+.gramota-number { font-size: 8px; margin: 15px 0 0; letter-spacing: 1px; color: var(--muted); }
+.success-dialog { padding-top: 27px; }
+.success-seal { margin: 5px auto 23px; position: relative; width: 95px; height: 95px; border: 1px solid var(--rust); border-radius: 50%; display: grid; place-items: center; transform: rotate(-9deg); }
+.success-seal::before { content: ''; position: absolute; inset: 5px; border: 1px dashed var(--rust); border-radius: 50%; }
+.success-seal img { width: 60px; }
+.success-seal > span { position: absolute; bottom: -5px; right: -5px; background: var(--rust); border: 3px solid var(--paper-light); color: var(--paper); border-radius: 50%; width: 31px; height: 31px; display: grid; place-items: center; font-size: 15px; }
+.success-dialog[open] .success-seal { animation: stamp-in .65s .1s both; }
+.success-copy { font: 15px/1.6 Georgia; color: var(--muted); margin-bottom: 20px; }
+.success-dialog > .primary { width: 100%; margin-top: 7px; }
+.success-dialog > .text-button { margin: 9px auto 0; display: block; font-size: 11px; }
+
+/* 07. Анимации и адаптация */
+@keyframes snow { to { background-position: 120px 360px, -130px 426px; } }
+@keyframes dragon-flight { 0% { transform: translate(0, 40px) rotate(-8deg) scale(.8); } 35% { transform: translate(46vw, -15px) rotate(6deg) scale(1); } 70% { transform: translate(92vw, 15px) rotate(-5deg) scale(.9); } 100% { transform: translate(140vw, -20px) rotate(0deg) scale(.7); } }
+@keyframes wing-beat { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.3); } }
+@keyframes wolf-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes open-letter { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes stamp-in { 0% { opacity: 0; transform: scale(1.7) rotate(15deg); } 70% { opacity: 1; transform: scale(.93) rotate(-12deg); } 100% { transform: scale(1) rotate(-9deg); } }
+@media (min-width: 1600px) {
+  .map { max-height: 870px; }
+}
+@media (max-width: 1150px) {
+  .header-note { display: none; }
+  h1 { font-size: 9.5vw; letter-spacing: -3px; }
+  .intro-aside { grid-template-columns: 95px auto; gap: 12px 20px; }
+  .wolf-seal { width: 95px; height: 115px; }
+  .wolf-seal img { width: 78px; height: 78px; }
+  .wolf-seal span { font-size: 5px; }
+  .intro-aside p { font-size: 14px; }
+  .card-body strong { font-size: 20px; }
+  .card-bottom { font-size: 9px; }
+  .card-bottom b { font-size: 14px; }
+  .field-note { grid-template-columns: 45px 1fr 1fr 90px; gap: 23px; }
+  .field-note h2 { font-size: 27px; }
+  .note-wolf { width: 90px; }
+  footer { flex-wrap: wrap; }
+}
+@media (max-width: 850px) {
+  body { padding: 9px; }
+  .wrap { width: 91%; }
+  .edition { font-size: 7px; letter-spacing: 1px; }
+  .edition span:nth-child(2) { display: none; }
+  .masthead { gap: 20px; }
+  .intro-aside { display: block; max-width: 170px; }
+  .wolf-seal { display: none; }
+  .intro-aside p { font-size: 13px; margin-bottom: 13px; }
+  .journey-link { font-size: 10px; }
+  h1 { font-size: 10vw; }
+  h2 { font-size: 29px; }
+  .map-instruction { max-width: 210px; font-size: 10px; }
+  .filters label { min-width: 0; flex: 1; padding: 12px 16px; }
+  select { font-size: 11px; }
+  .filters .text-button { font-size: 10px; margin-left: 16px; }
+  #result-count { margin: 0 14px 0 20px; font-size: 9px; }
+  .marker .pin { width: 30px; height: 30px; font-size: 13px; }
+  .marker .label { font-size: 8px; max-width: 130px; margin-top: 8px; padding: 4px 6px; }
+  .marker .label small { font-size: 6px; }
+  .legend { gap: 15px; padding: 12px 16px; }
+  .legend small { display: none; }
+  .shelter-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+  .card-body strong { font-size: 25px; min-height: 0; }
+  .card-bottom { font-size: 11px; }
+  .card-bottom b { font-size: 17px; }
+  .card-image { aspect-ratio: 1.6; }
+  .list-heading > p { display: none; }
+  .field-note { grid-template-columns: 1fr 1fr; gap: 25px; }
+  .note-number, .note-wolf { display: none; }
+  .booking-record { grid-template-columns: 60px 1fr auto; gap: 18px; }
+  .record-stamp { width: 57px; height: 57px; }
+  .record-stamp img { width: 35px; }
+  .booking-record .text-button { grid-column: 2 / -1; justify-self: end; margin: -5px 0 0; }
+  .stay-dialog { width: calc(100% - 35px); }
+  .detail { grid-template-columns: .75fr 1fr; }
+  .detail-body { padding: 40px 25px 25px; }
+  .detail h3 { font-size: 32px; }
+  .detail-art-caption { left: 20px; right: 20px; bottom: 25px; }
+  .detail-art-caption strong { font-size: 38px; }
+}
+@media (max-width: 600px) {
+  body { padding: 6px; }
+  .header { padding: 16px 0; gap: 15px; }
+  .brand { gap: 6px; font-size: 10px; letter-spacing: .3px; }
+  .brand img { width: 29px; height: 35px; }
+  nav { gap: 15px; }
+  .nav-link { font-size: 9px; }
+  #booking-count { min-width: 17px; height: 17px; font-size: 8px; margin-left: 2px; }
+  .intro { padding-top: 15px; }
+  .edition { font-size: 5.5px; letter-spacing: .8px; }
+  .masthead { align-items: end; padding: 23px 0 27px; gap: 13px; }
+  h1 { font-size: 12vw; letter-spacing: -2px; line-height: .98; }
+  .intro-aside { max-width: 105px; }
+  .intro-aside p { font-size: 10px; line-height: 1.5; margin-bottom: 7px; }
+  .journey-link { font-size: 8px; padding-bottom: 4px; white-space: nowrap; }
+  .journey-link span { font-size: 15px; margin-left: 8px; }
+  .atlas-toolbar { padding: 20px 0 18px; border-top-width: 2px; }
+  .atlas-title { gap: 13px; }
+  .chapter-index { font-size: 35px; padding-right: 13px; }
+  .atlas-title .eyebrow { font-size: 6px; letter-spacing: .8px; max-width: 190px; }
+  h2 { font-size: 25px; }
+  .map-instruction { display: none; }
+  .filters { flex-wrap: wrap; padding-bottom: 0; }
+  .filters label { flex: 0 0 50%; padding: 11px 10px; border-bottom: 1px solid var(--line); }
+  .filters label:nth-child(2) { border-right: none; }
+  .filters label > span { font-size: 6px; letter-spacing: .7px; }
+  select { font-size: 10px; min-height: 29px; padding-right: 5px; }
+  .filters .text-button { margin-left: 11px; min-height: 35px; font-size: 9px; }
+  #result-count { margin-left: auto; font-size: 8px; }
+  .map { aspect-ratio: 1.15; }
+  .map-art { object-fit: fill; }
+  .map-caption { top: 2%; left: 3%; }
+  .map-caption > span { font-size: 5px; letter-spacing: 1px; }
+  .map-caption strong { font-size: 19px; letter-spacing: -.4px; }
+  .marker { padding: 5px; max-width: 110px; }
+  .marker .pin { width: 27px; height: 27px; font-size: 12px; }
+  .marker .label { font-size: 7px; max-width: 88px; padding: 3px 5px; }
+  .marker .label small { display: none; }
+  .map-compass { bottom: 2%; left: 2%; font-size: 6px; }
+  .map-compass b { font-size: 34px; }
+  .map-coordinates { font-size: 5px; letter-spacing: .6px; right: 2%; bottom: 2%; }
+  .legend { gap: 12px; padding: 10px 9px; justify-content: center; }
+  .legend > span { font-size: 7px; gap: 5px; }
+  .legend i { width: 15px; height: 15px; font-size: 9px; }
+  .dragon-one { width: 65px; }
+  .dragon-two { width: 42px; }
+  .list-heading { margin: 35px 0 20px; }
+  .list-heading .eyebrow { font-size: 7px; }
+  .list-heading h2 { font-size: 27px; max-width: 280px; }
+  .shelter-list { gap: 22px 13px; }
+  .card-image { aspect-ratio: 1.1; }
+  .card-number { font-size: 8px; top: 7px; left: 7px; padding: 1px 5px; }
+  .availability { right: 5px; bottom: 5px; font-size: 6px; letter-spacing: .2px; padding: 4px 5px; }
+  .card-type { font-size: 5.5px; letter-spacing: .4px; }
+  .card-body { padding-top: 10px; }
+  .card-body strong { font-size: 20px; min-height: 44px; }
+  .card-bottom { margin-top: 10px; flex-wrap: wrap; font-size: 8px; gap: 6px; }
+  .card-bottom b { font-size: 14px; }
+  .card-bottom small { font-size: 7px; }
+  .card-bottom > span:last-child { display: none; }
+  .field-note { margin-top: 35px; padding: 25px 0; grid-template-columns: 1fr; gap: 20px; }
+  .field-note h2 { font-size: 29px; }
+  .field-note > p { font-size: 11px; }
+  .bookings-section { padding: 35px 0; }
+  .section-heading { align-items: start; }
+  .section-heading .text-button { font-size: 9px; min-width: 90px; }
+  .booking-empty { padding: 23px 16px; gap: 15px; }
+  .booking-empty img { width: 45px; height: 45px; }
+  .booking-empty strong { font-size: 20px; }
+  .booking-empty p { font-size: 10px; }
+  .booking-record { grid-template-columns: 45px 1fr; gap: 13px; padding: 15px; }
+  .record-stamp { width: 40px; height: 40px; }
+  .record-stamp img { width: 26px; }
+  .booking-record h3 { font-size: 22px; }
+  .booking-record .eyebrow { font-size: 6px; }
+  .booking-record p { font-size: 9px; }
+  .booking-record .amount { grid-column: 2; font-size: 23px; }
+  .booking-record .amount small { display: inline; margin-left: 5px; }
+  .booking-record .text-button { margin: -4px 0 0; justify-self: start; font-size: 10px; }
+  footer { display: grid; gap: 18px; padding: 22px 0; }
+  footer > p { font-size: 8px; }
+  footer > small { font-size: 6px; }
+  dialog { max-height: calc(100dvh - 24px); }
+  .stay-dialog { width: calc(100% - 24px); }
+  .detail { grid-template-columns: 1fr; min-height: 0; }
+  .detail-art { min-height: 170px; max-height: 170px; }
+  .detail-art .scene-crop { background-size: 230%; }
+  .detail-art-caption { left: 20px; bottom: 20px; }
+  .detail-art-caption > span { font-size: 7px; }
+  .detail-art-caption strong { font-size: 29px; margin: 6px 0 0; }
+  .detail-art-caption img { display: none; }
+  .detail-body { padding: 22px; }
+  .detail h3 { font-size: 30px; }
+  .description { font-size: 11px; }
+  .perks { font-size: 8px; gap: 5px 10px; }
+  .price-row { padding: 13px 0; }
+  .fields { gap: 13px; }
+  .total { margin-top: 4px; }
+  .letter-dialog { padding: 25px 22px; width: calc(100% - 28px); }
+  .letter-topline { font-size: 5px; letter-spacing: .6px; margin-bottom: 15px; }
+  .letter-dialog h2 { font-size: 37px; }
+  .letter-dialog #confirm-text { font-size: 13px; }
+  .letter-dialog .eyebrow { font-size: 7px; letter-spacing: 1px; }
+  .letter-emblem { width: 57px; height: 57px; margin-bottom: 15px; }
+  .letter-emblem img { width: 47px; }
+  .dialog-actions { flex-direction: column-reverse; gap: 9px; margin: 22px 0; }
+  .dialog-actions button { font-size: 12px; min-height: 47px; padding: 12px; }
+  .gramota-house { font-size: 21px; }
+  .gramota-grid small { font-size: 6px; letter-spacing: .2px; }
+  .gramota-grid b { font-size: 23px; }
+  .gramota-grid b em { font-size: 8px; }
+  .success-seal { width: 74px; height: 74px; }
+  .success-seal img { width: 47px; }
+  .success-copy { font-size: 13px; }
+  .success-dialog > .text-button { font-size: 9px; }
+  .letter-bottom { font-size: 5.5px; letter-spacing: .9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+  .dragon { display: none; }
+}
+
+/* Самые узкие экраны: заголовок сохраняет поля плаката. */
+@media (max-width: 400px) {
+  .masthead { flex-direction: column; align-items: start; gap: 18px; }
+  .masthead h1 { font-size: 13vw; }
+  .intro-aside { max-width: none; display: flex; align-items: center; gap: 20px; }
+  .intro-aside p { margin: 0; }
+}
+.save-warning { font-size: 11px; color: var(--rust); padding: 12px; border: 1px solid var(--rust); }

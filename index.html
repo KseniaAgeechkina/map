@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11161c">
+  <meta name="description" content="Восемь пристанищ у великой Стены. Выберите место на карте северных земель и оформите учебную бронь.">
+  <title>Северный рубеж — найдите свой Север</title>
+  <link rel="icon" href="images/wolf.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/world.css?v=12">
+  <link rel="stylesheet" href="css/thrones.css?v=12">
+  <script defer src="js/app.js?v=12"></script>
+</head>
+<body data-world="night">
+  <div class="page-shell">
+    <header class="header wrap">
+      <a class="brand" href="#top" aria-label="Северный рубеж — на главную"><img src="images/wolf.svg" alt=""><span>СЕВЕРНЫЙ<br>РУБЕЖ</span></a>
+      <nav aria-label="Основная навигация"><a class="nav-link active" href="#shelters">Карта Севера</a><a class="nav-link" href="#bookings">Мои походы <span id="booking-count">0</span></a></nav>
+      <div class="world-switch" role="group" aria-label="Время суток на Севере">
+        <button type="button" data-world="day" aria-pressed="false"><span aria-hidden="true">☼</span> День</button>
+        <button type="button" data-world="night" aria-pressed="true"><span aria-hidden="true">☾</span> Долгая ночь</button>
+      </div>
+    </header>
+    <main id="top">
+      <section class="wall-hero" aria-labelledby="title">
+        <img class="wall-landscape" src="images/wall-panorama.webp" alt="Монументальная ледяная Стена над заснеженным лесом">
+        <div class="wall-grain" aria-hidden="true"></div>
+        
+        <h1 id="title"><span>THE</span><strong>WALL</strong></h1>
+        <div class="wall-side wall-side-left"><span>58° С. Ш.</span><i></i><p>Северное<br>королевство</p><small>ВОСЕМЬ ПРИСТАНИЩ<br>ПОД ЗАЩИТОЙ СТЕНЫ</small></div>
+        <div class="wall-side wall-side-right"><img src="images/wolf.svg" alt=""><p>Ночь темна.<br>Но огни ещё горят.</p><i></i><small>ВАША ИСТОРИЯ<br>НАЧИНАЕТСЯ ЗДЕСЬ</small></div>
+        <a class="wall-enter" href="#shelters"><span>Найти своё пристанище</span></a>
+        <div class="wall-bottom"><span id="world-status">Долгая ночь · огни дозора зажжены</span><span>АТЛАС НОЧНОГО ДОЗОРА / 01</span></div>
+      </section>
+      <section id="shelters" class="atlas-section wrap" aria-label="Выбор пристанища">
+        <div class="atlas-toolbar"><div class="atlas-title"><span class="chapter-index">I</span><div><p class="eyebrow">ВОСЕМЬ ПРИСТАНИЩ. ОДИН СУРОВЫЙ СЕВЕР.</p><h2>За гранью известных дорог</h2></div></div><div class="map-controls"><button type="button" id="fog-toggle" aria-pressed="true">Туман: включён</button><p class="map-instruction">Проведите над картой, чтобы открыть тропы.<br>Или выберите пристанище из списка ниже.</p></div></div>
+        <form class="filters" id="filters">
+          <div class="filter-field"><span id="guest-label">01 · Сколько вас?</span><div class="custom-filter"><button id="guest-filter" type="button" class="filter-trigger" value="1" aria-haspopup="listbox" aria-expanded="false" aria-controls="guest-options" aria-labelledby="guest-label guest-value"><span class="filter-value" id="guest-value">Любая вместимость</span><span class="filter-chevron" aria-hidden="true">⌄</span></button><div id="guest-options" class="filter-options" role="listbox" aria-label="01 · Сколько вас?" hidden><button type="button" role="option" tabindex="-1" data-value="1" aria-selected="false">Любая вместимость</button><button type="button" role="option" tabindex="-1" data-value="2" aria-selected="false">От 2 гостей</button><button type="button" role="option" tabindex="-1" data-value="3" aria-selected="false">От 3 гостей</button><button type="button" role="option" tabindex="-1" data-value="4" aria-selected="false">От 4 гостей</button><button type="button" role="option" tabindex="-1" data-value="5" aria-selected="false">От 5 гостей</button></div></div></div>
+          <div class="filter-field"><span id="price-label">02 · Ваш запас серебра</span><div class="custom-filter"><button id="price-filter" type="button" class="filter-trigger" value="999" aria-haspopup="listbox" aria-expanded="false" aria-controls="price-options" aria-labelledby="price-label price-value"><span class="filter-value" id="price-value">Любая стоимость</span><span class="filter-chevron" aria-hidden="true">⌄</span></button><div id="price-options" class="filter-options" role="listbox" aria-label="02 · Ваш запас серебра" hidden><button type="button" role="option" tabindex="-1" data-value="999" aria-selected="false">Любая стоимость</button><button type="button" role="option" tabindex="-1" data-value="70" aria-selected="false">До 70 монет / ночь</button><button type="button" role="option" tabindex="-1" data-value="100" aria-selected="false">До 100 монет / ночь</button><button type="button" role="option" tabindex="-1" data-value="120" aria-selected="false">До 120 монет / ночь</button></div></div></div>
+          <button class="text-button" type="reset">Сбросить ↺</button><span id="result-count" aria-live="polite"></span>
+        </form>
+        <div class="map-frame ornate-frame"><div class="atlas-topline"><span>КАРТА СЕВЕРНЫХ ЗЕМЕЛЬ</span><span>НОЧНОЙ ДОЗОР</span></div><div class="map-viewport" id="map-viewport" tabindex="0" role="region" aria-label="Интерактивная карта. Плюс и минус — масштаб, стрелки — перемещение, ноль — сброс"><div class="map" id="map"><img src="images/etched-map.webp" class="map-art" alt="Гравированная карта Севера с лесами, рекой и восемью пристанищами"><div class="fog-layer" aria-hidden="true"></div><div id="markers"></div><div class="dragon-sky" aria-hidden="true"><span class="dragon dragon-one"><svg viewBox="0 0 200 110" aria-hidden="true"><g fill="#17252c"><path d="m90 53 10-18 9-7 10 3-12 7 1 13 15 12-17-2-10 17-15 16-22 5 20-15 9-16-9-6Z"/><path d="m108 34 4-13 4 10 12 1-12 5Z"/><path class="wing" d="M96 55 78 28 38 5 9 1 31 23 25 38 46 34 51 52 68 44 85 64Z"/><path class="wing wing-right" d="m104 55 24-28 42-17 28 4-26 16 1 17-21-7-8 18-17-9-17 16Z"/><path d="m98 68 6 13 9 3-7 3-10-11-10 8-10-1 13-5Z"/></g></svg></span><span class="dragon dragon-two"><svg viewBox="0 0 200 110" aria-hidden="true"><g fill="#17252c"><path d="m90 53 10-18 9-7 10 3-12 7 1 13 15 12-17-2-10 17-15 16-22 5 20-15 9-16-9-6Z"/><path d="m108 34 4-13 4 10 12 1-12 5Z"/><path class="wing" d="M96 55 78 28 38 5 9 1 31 23 25 38 46 34 51 52 68 44 85 64Z"/><path class="wing wing-right" d="m104 55 24-28 42-17 28 4-26 16 1 17-21-7-8 18-17-9-17 16Z"/><path d="m98 68 6 13 9 3-7 3-10-11-10 8-10-1 13-5Z"/></g></svg></span></div></div><div class="map-navigation" role="group" aria-label="Управление картой"><button id="map-plus" type="button" aria-label="Приблизить карту">+</button><output id="map-scale" aria-live="polite">100%</output><button id="map-minus" type="button" aria-label="Отдалить карту">−</button><button id="map-reset" type="button" aria-label="Сбросить положение карты">⌖</button></div><span class="map-drag-hint">ПЕРЕТАЩИТЕ КАРТУ · КОЛЕСО ИЛИ + / − ДЛЯ МАСШТАБА</span></div><div class="legend"><span><i class="free">⌂</i> Свободное пристанище</span><span><i class="selected">✓</i> Ваш выбор</span><span><i class="busy">×</i> Занят</span><small>Свободные пристанища доступны для бронирования</small></div></div>
+        <p id="empty" class="empty-result" hidden>На этой тропе пока нет подходящих пристанищ. Измените фильтры.</p>
+        <div class="list-heading"><div><p class="eyebrow">ВЫБЕРИТЕ СВОЮ ИСТОРИЮ</p><h2>У каждого пристанища — своя легенда.</h2></div><p>Не просто ночлег.<br>Место, с которого начнётся ваш поход.</p></div>
+        <div class="shelter-list" id="shelter-list"></div>
+      </section>
+      <section class="field-note wrap" aria-label="История Севера"><div class="note-number">VIII</div><div><p class="eyebrow">ЗАПИСКИ ДОЗОРНОГО</p><h2>Здесь не спрашивают,<br>откуда вы пришли.</h2></div><p>Здесь подбрасывают дров в огонь. За окнами бродят белые волки, над башнями кружат вороны, а порой в облаках мелькает тень дракона.<br><br>Оставьте дорогу за порогом.<br>На эту ночь вы — дома.</p></section>
+      <section class="bookings-section wrap" id="bookings" tabindex="-1"><div class="section-heading"><div class="atlas-title"><span class="chapter-index">II</span><div><p class="eyebrow">ВАШ ПУТЬ НА СЕВЕР</p><h2>Хроника ваших походов</h2></div></div><button class="text-button" id="reset-demo">Удалить записи</button></div><div id="booking-list"></div></section>
+    </main>
+    <footer class="wrap"><div class="footer-brand"><img src="images/wolf.svg" alt=""><span>СЕВЕРНЫЙ РУБЕЖ<small>СЕВЕР ПОМНИТ СВОИХ ГОСТЕЙ.</small></span></div><small>Учебное демо: бронирования сохраняются только в этом браузере · DESIGN BY КСЕНИЯ АГЕЕЧКИНА · 2026</small></footer>
+  </div>
+  <div id="notice" class="notice" role="status" aria-live="polite"></div>
+  <!-- Карточка пристанища и форма открываются как большой разворот атласа. -->
+  <dialog id="stay-dialog" class="stay-dialog" aria-label="Выбранное пристанище"><button type="button" class="modal-close" data-close="stay-dialog" aria-label="Закрыть карточку пристанища">×</button><div id="detail" class="detail"></div></dialog>
+  <!-- Окно проверки брони перед подтверждением. -->
+  <dialog id="confirm-dialog" class="letter-dialog" aria-labelledby="confirm-title"><form method="dialog"><div class="letter-topline"><span>НОЧНОЙ ДОЗОР</span><span>КАНЦЕЛЯРИЯ ПРИСТАНИЩ</span></div><div class="letter-emblem"><img src="images/wolf.svg" alt=""></div><p class="eyebrow" id="confirm-kicker">ДОРОЖНАЯ ГРАМОТА</p><h2 id="confirm-title">Подтвердите действие</h2><p id="confirm-text"></p><div id="confirm-summary"></div><div class="dialog-actions"><button value="cancel" class="secondary" id="confirm-cancel">Вернуться</button><button value="yes" class="primary" id="confirm-yes">Подтвердить</button></div><span class="letter-bottom">ПОД ЗАЩИТОЙ СЕВЕРНОГО РУБЕЖА</span></form></dialog>
+  <dialog id="record-dialog" class="letter-dialog record-dialog" aria-labelledby="record-title">
+    <button class="modal-close" type="button" data-close="record-dialog" aria-label="Закрыть подробности брони">×</button>
+    <p class="eyebrow">ХРОНИКА СЕВЕРНОГО РУБЕЖА</p>
+    <h2 id="record-title">Ваша дорожная грамота</h2>
+    <p id="record-description" class="success-copy"></p>
+    <div id="record-summary"></div>
+    <button class="primary" type="button" data-close="record-dialog">Вернуться к хронике</button>
+  </dialog>
+  <!-- Успех: отдельная грамота с печатью, номером и итоговой суммой. -->
+  <dialog id="success-dialog" class="letter-dialog success-dialog" aria-labelledby="success-title">
+    <button class="modal-close" data-close="success-dialog" aria-label="Закрыть подтверждение">×</button>
+    <div id="sealed-letter">
+      <div class="letter-topline"><span>ПИСЬМО НОЧНОГО ДОЗОРА</span><span>ЛИЧНО В РУКИ</span></div>
+      <p class="eyebrow">БРОНЬ УЖЕ СОХРАНЕНА В ВАШЕЙ ХРОНИКЕ</p>
+      <h2 id="delivery-title">Вам письмо с Севера.</h2>
+      <p id="delivery-status" role="status" aria-live="polite">Письмо готово. Ваша печать Ночного дозора.</p>
+      <div class="sealed-envelope"><div class="envelope-flap"></div><div class="envelope-lines"></div><button id="break-seal" class="wax-seal" type="button" disabled aria-label="Вскрыть письмо с подтверждением брони"><span class="seal-whole"><img src="images/wolf.svg" alt=""></span><span class="seal-piece seal-left"><img src="images/wolf.svg" alt=""></span><span class="seal-piece seal-right"><img src="images/wolf.svg" alt=""></span><svg class="seal-crack" viewBox="0 0 64 64" aria-hidden="true"><path d="m34 2-6 13 8 9-9 9 7 10-8 19"/></svg><i class="wax-chip chip-one"></i><i class="wax-chip chip-two"></i><i class="wax-chip chip-three"></i></button></div>
+      <p class="seal-hint">Нажмите на волчью печать, чтобы прочитать.</p>
+      <button class="text-button" id="skip-letter">Прочитать без анимации</button>
+      <span class="letter-bottom">ПИСЬМО ПОД ЗАЩИТОЙ НОЧНОГО ДОЗОРА</span>
+    </div>
+    <div id="opened-letter" hidden>
+      <div class="letter-topline"><span>СЕВЕРНЫЙ РУБЕЖ</span><span>БРОНЬ ПОДТВЕРЖДЕНА</span></div>
+      <div class="success-seal"><img src="images/wolf.svg" alt=""><span>✓</span></div>
+      <p class="eyebrow">ВАШЕ МЕСТО У ОГНЯ СОХРАНЕНО</p>
+      <h2 id="success-title">Север вас ждёт.</h2>
+      <p class="success-copy" id="mission-ending"></p>
+      <div id="success-summary"></div>
+      <button class="primary" id="view-bookings">Открыть мою хронику</button>
+      <button class="text-button" data-close="success-dialog">Вернуться к карте</button>
+      <span class="letter-bottom">УЧЕБНАЯ ГРАМОТА · БЕЗ ОПЛАТЫ</span>
+    </div>
+  </dialog>
+
+</body>
+</html>
